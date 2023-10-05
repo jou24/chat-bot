@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <style>
+       /* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    
+}
+body{
+    background-color: #c7cdce;
+}
+
+h1 {
+    font-size: 48px; /* Adjust the font size */
+    background: linear-gradient(45deg, #021af1, #a6ff00 ); /* Gradient color */
+    -webkit-background-clip: text; /* Apply the gradient to the text */
+    background-clip: text; /* Apply the gradient to the text */
+    color: transparent; /* Hide the text color */
+    animation: fadeIn 20s 4s infinite; /* Apply the fadeIn animation */
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+/* Define the fadeIn animation */
+@keyframes fadeIn {
+    0% {
+
+        color:#0056b3;
+    }
+    50% {
+       
+        color:rgb(243, 4, 211);
+    }
+    
+    100% {
+     
+        color: #ee0707;
+    }
+}
+
+/* Apply styles to the header and navbar */
+header {
+    background-color: #333; /* Background color for the navbar */
+    color: #fff; /* Text color for the links */
+    padding: 10px 0; /* Add some padding to the header */
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px; /* Add spacing between the links */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Text color for the links */
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease; /* Add a smooth color transition */
+}
+
+nav ul li a:hover {
+    color: #00bcd4; /* Text color when hovering over a link */
+}
+/* Style the tooltip */
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color:rgb(255, 255, 255);
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 1;
+    width: 500px;
+    height: 180px;
+}
+
+/* Show the tooltip when hovering over a link */
+nav ul li:hover .tooltip {
+   display: block;
+}
+
+/* Position the tooltip relative to the link */
+nav ul li {
+    position: relative;
+}
+
+/* Adjust the position of the tooltip as needed */
+nav ul li a + .tooltip {
+    top: 30px; /* Adjust the vertical position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+}
+        #demo {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #ee0707; /* Text color */
+    background-color: #f0f0f0; /* Background color */
+    padding: 10px; /* Padding around the text */
+    border: 2px  #999; /* Border */
+    border-radius: 5px; /* Rounded corners */
+    max-width: 400px; /* Maximum width */
+    margin: 0 auto; /* Center the element horizontally */
+  }
+
+        .container {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-box {
+            max-height: 400px;
+            overflow-y: scroll;
+            padding: 1rem;
+        }
+
+        .user-message {
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+
+        .bot-message {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+    </style>
+
+<script>
+    var i = 0;
+    var textIndex = 0; // To track which text to display
+    var texts = [
+      'Great things come from small beginnings',
+      'This is awesome...'
+    ];
+    var speed = 50;
+    var sleepTime = 2000; // 2 seconds
+    
+    function typeWriter() {
+      if (i < texts[textIndex].length) {
+        document.getElementById("demo").innerHTML += texts[textIndex].charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        setTimeout(function() {
+          i = 0;
+          document.getElementById("demo").innerHTML = '';
+          textIndex = (textIndex + 1) % texts.length; // Cycle between texts
+          typeWriter();
+        }, sleepTime);
+      }
+    }
+    </script>
+</head>
+<body onload="typeWriter()">
+    <header>
+
+        <nav>
+            <ul>
+                <li><a href="http://localhost:3000/">Home</a></li>
+                <li>
+                    <a>How to Use</a>
+                    <span class="tooltip">Using our chatbot is easy! Simply type your question or command in the chatbox, and the chatbot will respond accordingly. You can ask questions like 'What is the time?' to get the current time, 'What is my IP address?' to find your IP address, or 'Tell me about my user agent' to learn about your browser and operating system. If you want to clear the chat history, just type 'Clear.' The chatbot also supports calculations, so you can ask it to 'Calculate 5 + 3.' Feel free to explore and ask any questions you have. If you need assistance or have any doubts, just type 'Help' for instructions on how to use the chatbot.</span>
+                </li>
+                <li>
+                    <a>About Us</a>
+                    <span class="tooltip">We are a team passionate about web development and cybersecurity. Our mission is to provide a user-friendly chatbot that can assist you with information, calculations, and more. We're dedicated to enhancing your online experience and ensuring your questions are answered promptly. Feel free to communicate with us anytime; we're here to help and engage in discussions related to web development, cybersecurity, or any other topics you're curious about. Your feedback and questions are always welcome as we continue to improve and expand our services.</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <h1> Chat Bot </h1>
+    <p id="demo"></p>
+    <div class="container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+        <button onclick="clearChat()" style="background-color: #FF5733; color: #fff;">Clear Chat</button>
+    </div>
+
+    <script>
+    
+    const animatedTitles = document.querySelectorAll('.animated-title');
+let delay = 0;
+
+// Apply animation delay to each letter
+animatedTitles.forEach(title => {
+    title.style.animationDelay = `${delay}s`;
+    delay += 0.15; // Adjust the delay between each letter
+});
+
+
+
+
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
+
+        function appendUserMessage(message) {
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'user-message';
+            userMessageDiv.textContent = message;
+            chatBox.appendChild(userMessageDiv);
+        }
+
+        function appendBotMessage(message) {
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.className = 'bot-message';
+            botMessageDiv.textContent = message;
+            chatBox.appendChild(botMessageDiv);
+        }
+
+        function sendMessage() {
+            const userMessage = messageInput.value.trim();
+            if (userMessage) {
+                appendUserMessage(userMessage);
+
+                // Send user message to the server and receive a response
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const botResponse = data.message;
+                    appendBotMessage(botResponse);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+                // Clear the input field
+                messageInput.value = '';
+            }
+        }
+
+        function clearChat() {
+            // Clear the chat box on the client side
+            chatBox.innerHTML = '';
+
+            // Send a "clear" message to the server
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: 'clear' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botResponse = data.message;
+                appendBotMessage(botResponse);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        } 
+
+    </script>
+        <footer style=" text-align: center; padding: 3px; margin-top: 220px;">
+            <p>Author: ABDELLATIF JOUHOUD <br>
+            <a href="https://www.intelegenceworld.com"  target="_blank">intelegenceworld.com</a></p>
+          </footer>
+</body>
+</html>
