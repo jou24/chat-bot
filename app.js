@@ -73,7 +73,7 @@ app.post('/chat', (req, res) => {
         } 
         
         else if (userMessage.includes('who are you ?')|| userMessage.includes('who are you?')) {
-            botResponse = "Hello! I'm your friendly chatbot here to assist you. I'm designed to help answer your questions, provide information, share interesting facts, and even crack a joke or two. I'm here to make your digital interactions more engaging and informative. Feel free to ask me anything you're curious about, and I'll do my best to assist you. Whether you need a quick calculation, a weather update, a piece of advice, or just a friendly conversation, I'm here for you. Ask away!";
+            botResponse = "Hello! I'm your friendly chatbot here to assist you. I'm designed by ABDELLATIF JOUHOUD to help answer your questions, provide information, share interesting facts, and even crack a joke or two. I'm here to make your digital interactions more engaging and informative. Feel free to ask me anything you're curious about, and I'll do my best to assist you. Whether you need a quick calculation, a weather update, a piece of advice, or just a friendly conversation, I'm here for you. Ask away!";
         }
         else {
             botResponse = "I'm not sure I understand. Can you please rephrase your question?";
