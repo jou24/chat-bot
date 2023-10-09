@@ -60,9 +60,6 @@ app.post('/chat', (req, res) => {
         if (userMessage.includes('time')|| userMessage.includes('what is the curreny time ?')) {
             const currentTime = new Date().toLocaleTimeString();
             botResponse = `The current time is ${currentTime}`;
-        } else if (userMessage.includes('ip')|| userMessage.includes('What is my IP ?')) {
-            const ipAddress = req.connection.remoteAddress;
-            botResponse = `Your IP address is ${ipAddress}`;
         } else if (userMessage.includes('user agent')) {
             const userAgent = req.useragent.browser + ' on ' + req.useragent.os;
             botResponse = `Your user agent is: ${userAgent}`;
